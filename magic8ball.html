@@ -1,0 +1,66 @@
+<html>
+<head>
+<script languague = "JavaScript">
+//global variable
+var answers = ["Yes", "No", "Maybe", "Never", "Very Doubtful", "Probably", "Depends on who wins tomorrow's game", "Of course", "The future is cloudy", "Perhaps", "Without a doubt"];
+
+function random()
+{
+    var rand = -1;//local variable
+    var userQ = document.getElementById("question");
+    var myAnswer = document.getElementById("answer");
+/*  
+    rand = Math.random ();//Math.random returns a random decimal 0 (inclsuive) and 1 (exclsive)
+    //rand = rand *10; //0.0000 and 9.99999
+    rand = rand *21;
+    
+    rand = Math.floor (rand) //returns nearest integer that is less than the parameter 
+    //rand contains a value between 0-9 (inclsive)
+     rand = rand -10 // now between 1-10 ---adjusting rande dtart and end point
+	alert(rand);
+*/
+    rand = Math.random ()*answers.length; //0-10
+    rand = Math.floor(rand); //returns the nearest integer that is less than the parameter 
+    
+    //alert(userQ.value.length);
+    
+    if(userQ.value.length == 0) //nothing is in question textbox
+    {
+        myAnswer.value = "Please type a question first.";
+    }
+    else
+    {
+        myAnswer.value = answers[rand];
+        if(rand == 3)
+        {
+            document.getElementById("player").play();     
+        }
+    }
+}
+ 
+function reset ()
+{
+    document.getElementById("answer").value = "";
+    //alert("hello")
+}
+
+</script>
+</head>
+<body background="images/magic8ballbkgnd.gif">
+<center>
+<h1>Magic 8-Ball</h1>
+
+<img src="images/soothsayer.jpg" width = "200"/><br/><br/>
+    
+<input id = "question" type = "text" size = "80" onfocusin="reset ()"/><br/><br/>
+<input type="button" value="Click here" onClick="random()"/><br/><br/>
+<input id= "answer" type = "text" size = "80" readonly = true /><br/><br/>
+<audio id="player" src="sounds/booing.mp3"></audio>
+<p>To predict your future, please type a question in the uppermost textbox! After that, just allow the magic to happen....
+
+<a href="index.html">Click here to return to my homepage </a>
+</center>
+</body>
+</html>
+
+
